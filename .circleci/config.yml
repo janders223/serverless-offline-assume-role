@@ -5,7 +5,7 @@
 
 .restore_cache: &restore_cache
   restore_cache:
-  key: v1-modules-{{ checksum "package.json" }}
+    key: v1-modules-{{ checksum "package.json" }}
 
 .save_cache: &save_cache
   save_cache:
