@@ -12,81 +12,35 @@
     key: v1-modules-{{ checksum "package.json" }}
     paths: [~/app/node_modules]
 
-.persist_to_workspace: &persist_to_workspace
-  persist_to_workspace:
-    root: ~/app
-    paths: '*'
-
-.attach_workspace: &attach_workspace
-  attach_workspace:
-    at: ~/app
-
 version: 2
 jobs:
-  checkout:
+  test:
     <<: *node
     steps:
       - checkout
       - <<: *restore_cache
-      - <<: *persist_to_workspace
-  install:
-    <<: *node
-    steps:
-      - <<: *attach_workspace
       - run: npm ci
       - <<: *save_cache
-      - <<: *persist_to_workspace
-  lint:
-    <<: *node
-    steps:
-      - <<: *attach_workspace
       - run: npm run lint:ci
-      - <<: *persist_to_workspace
-  test:
-    <<: *node
-    steps:
-      - <<: *attach_workspace
       - run: npm run test:ci
-      - <<: *persist_to_workspace
-  report:
-    <<: *node
-    steps:
-      - <<: *attach_workspace
       - run: npm run report:ci
       - store_test_results:
           path: ./merged-test-results.xml
-  rollup:
-    <<: *node
-    steps:
-      - <<: *attach_workspace
-      - run: npm run rollup
-      - <<: *persist_to_workspace
   release:
     <<: *node
     steps:
-      - <<: *attach_workspace
+      - checkout
+      - <<: *restore_cache
+      - run: npm run rollup
       - run: npm run semantic-release || true
 
 workflows:
   version: 2
   release:
     jobs:
-      - checkout
-      - install:
-          requires: [checkout]
-      - lint:
-          requires: [install]
       - test:
-          requires: [install]
-      - report:
-          requires: [lint, test]
-      - rollup:
-          requires: [report]
-          filters:
-            branches:
-              only: [master]
       - release:
-          requires: [rollup]
+          requires: [test]
           filters:
             branches:
               only: [master]
