@@ -26,7 +26,7 @@ jobs:
       - run: npm run report:ci
       - store_test_results:
           path: ./merged-test-results.xml
-  release:
+  publish:
     <<: *node
     steps:
       - checkout
@@ -39,7 +39,7 @@ workflows:
   release:
     jobs:
       - test:
-      - release:
+      - publish:
           requires: [test]
           filters:
             branches:
