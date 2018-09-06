@@ -26,30 +26,30 @@ jobs:
     steps:
       - checkout
       - <<: *restore_cache
-      - <<: *persist_to_workspace:
+      - <<: *persist_to_workspace
   install:
     <<: *node
     steps:
-      - <<: *attach_workspace:
+      - <<: *attach_workspace
       - run: npm ci
       - <<: *save_cache
       - <<: *persist_to_workspace
   lint:
     <<: *node
     steps:
-      - <<: *attach_workspace:
+      - <<: *attach_workspace
       - run: npm run lint:ci
       - <<: *persist_to_workspace
   test:
     <<: *node
     steps:
-      - <<: *attach_workspace:
+      - <<: *attach_workspace
       - run: npm run test:ci
       - <<: *persist_to_workspace
   report:
     <<: *node
     steps:
-      - <<: *attach_workspace:
+      - <<: *attach_workspace
       - run: npm run report:ci
       - store_test_results:
         path: ./merged-test-results.xml
