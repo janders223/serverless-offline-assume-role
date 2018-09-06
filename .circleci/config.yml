@@ -38,7 +38,7 @@ workflows:
   version: 2
   release:
     jobs:
-      - test:
+      - test
       - publish:
           requires: [test]
           filters:
