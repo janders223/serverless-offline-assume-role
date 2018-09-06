@@ -12,7 +12,7 @@
   key: v1-modules-{{ checksum "package.json" }}
   paths: [~/app/node_modules]
 
-.persist_to_workspace: *persist_to_workspace
+.persist_to_workspace: &persist_to_workspace
   root: ~/app
   paths: *
 
