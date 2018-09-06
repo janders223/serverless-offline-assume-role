@@ -14,7 +14,7 @@
 
 .persist_to_workspace: &persist_to_workspace
   root: ~/app
-  paths: *
+  paths: '*'
 
 .attach_workspace: &attach_workspace
   at: ~/app
