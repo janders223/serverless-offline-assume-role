@@ -27,7 +27,7 @@ Then inside of your project's `serverless.yml` file add the following to the plu
 
 ```yaml
 plugins:
-    - serverless-offline-ssm
+    - serverless-offline-assume-role
     - serverless-offline
 ```
 
