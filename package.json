@@ -1,0 +1,28 @@
+{
+  "name": "serverless-offline-assume-role",
+  "version": "0.0.0",
+  "description": "Assume different IAM roles when running serverless-offline",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janders223/serverless-offline-assume-role.git"
+  },
+  "keywords": [
+          "Serverless",
+          "Amazon Web Services",
+          "AWS",
+          "Lambda",
+          "API Gateway",
+          "IAM",
+          "role"
+  ],
+  "author": "Jim Anders <jim@janders223.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/janders223/serverless-offline-assume-role/issues"
+  },
+  "homepage": "https://github.com/janders223/serverless-offline-assume-role#readme"
+}
