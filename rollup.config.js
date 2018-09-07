@@ -4,4 +4,10 @@ export default {
     file: 'dist/index.js',
     format: 'cjs',
   },
+  external: ['bluebird',
+    'fs',
+    'path',
+    'ini',
+    'aws-sdk',
+  ]
 }
